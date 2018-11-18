@@ -6,7 +6,7 @@ import cv2
 
 
 
-def Convolution2D(image,filter,bias,stride =1):
+def Convolution2D(image,filter,bias,stride =1,mode = 'SAME'):
 
     '''
     卷积层前向函数
@@ -17,8 +17,17 @@ def Convolution2D(image,filter,bias,stride =1):
     :return: 卷积之后的图像
     '''
     #滤波器参数
+
+
     (n_filter, n_con_filter,filt_dim,_) = filter.shape
     #输入图片参数
+
+
+    #SAME模式补边
+    if mode == 'SAME':
+        pd= (int)(filt_dim/2)
+        image = np.pad(image,((0, 0), (pd, pd), (pd, pd)) ,'constant')
+
     n_con,in_dim_y,in_dim_x= image.shape
 
     #输出参数
@@ -29,6 +38,8 @@ def Convolution2D(image,filter,bias,stride =1):
     assert n_con == n_con_filter , "滤波器的通道数必须同图片的通道数相等！"
     #输出格式
     out = np.zeros((n_filter,out_dim_y,out_dim_x))
+
+
 
     #卷积计算
     for current_filter in range(n_filter):
@@ -100,23 +111,23 @@ def categoricalCrossEntropy(probs, label):
     return -np.sum(label * np.log(probs))
 
 if __name__ == '__main__':
-    filter_1 = (1,1,3,3)
+    filter_1 = (1,1,5,5)
     filter_1 = utils.initializeFilter(filter_1)
 
 
     bias_1 = np.zeros((filter_1.shape[0], 1))
 
     dic = []
-    img_path = 'img/1.jpg'
+    img_path = '../img/1.jpg'
     img = cv2.imread(img_path,0)
     dic.append(img)
     dic = np.asarray(dic,dtype='float32')
-    print(dic)
-    # out = Convolution2D(dic, filter_1, bias_1)
-    out = MaxPool(dic)
+    print(dic.shape)
+    out = Convolution2D(dic, filter_1, bias_1,mode='SAME')
+    # out = MaxPool(dic)
     b = np.array(cv2.normalize(out[0], None, 0, 255, cv2.NORM_MINMAX))
 
 
-    print(out)
-    cv2.imwrite('2.jpg',b)
+    print(out.shape)
+    # cv2.imwrite('2.jpg',b)
 
