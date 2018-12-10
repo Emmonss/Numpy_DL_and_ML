@@ -8,6 +8,8 @@
       <sourceFolder url="file://$MODULE_DIR$/NumpyCNN/MyNumPy/NN" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NumpyCNN" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NumpyKNN" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NumpyCNN/Convolution2D" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NumpyCNN/NN" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
