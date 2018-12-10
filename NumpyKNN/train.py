@@ -24,8 +24,8 @@ def Main():
     print("Reacall:{}".format(recall))
     print("F1:{}".format(F1))
 
-    target_names = ['class 0', 'class 1', 'class 2']
-    print(classification_report(trainlabel[:fiter], out, target_names=target_names))
+    # target_names = ['class 0', 'class 1', 'class 2']
+    # print(classification_report(trainlabel[:fiter], out, target_names=target_names))
 
 if __name__ == '__main__':
     Main()
