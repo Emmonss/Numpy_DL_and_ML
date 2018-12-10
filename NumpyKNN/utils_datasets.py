@@ -42,25 +42,36 @@ def normalized(dataset):
     return ret
 
 
-def get_Precision_Recall(output,testlabels):
-    assert len(output) == len(testlabels), "测试结果和标签数目不等！"
+def get_Precision_Recall(output,truelabels):
+    assert len(output) == len(truelabels), "测试结果和标签数目不等！"
 
     digit_count = [0 for i in range(3)]
     digit_correct = [0 for i in range(3)]
+    digit_pre = [0 for i in range(3)]
 
     for i in range(len(output)):
-        if(output[i]==testlabels[i]):
+        if(output[i]==truelabels[i]):
+            #每类预测==真实值的情况
             digit_correct[int(output[i])-1] +=1
+        #预测结果每类的比重
         digit_count[int(output[i])-1]+=1
+        #真实情况每类的比重
+        digit_pre[int(truelabels[i])-1]+=1
+
 
     # print("digit_count:{}".format(digit_count))
     # print("digit_correct:{}".format(digit_correct))
 
 
     acc = float(np.sum(digit_correct))*100 / float(len(output))
-    recall = [x / y for x, y in zip(digit_correct, digit_count)]
+    precision = [x / y for x, y in zip(digit_correct, digit_count)]
+    recall = [x / y for x, y in zip(digit_correct, digit_pre)]
 
-    return acc,recall
+    PjiaR = [x+y for x, y in zip(precision, recall)]
+    PR2 = [2*x*y for x, y in zip(precision, recall)]
+    F1 = [x / y for x, y in zip(PR2,PjiaR )]
+
+    return acc,precision,recall,F1
 
 
 if __name__ == '__main__':
