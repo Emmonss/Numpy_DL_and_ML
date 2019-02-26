@@ -11,6 +11,7 @@
       <sourceFolder url="file://$MODULE_DIR$/NumpyCNN/Convolution2D" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NumpyCNN/NN" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NumpyRNN" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Numpy_Bayes" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
